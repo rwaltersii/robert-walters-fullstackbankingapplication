@@ -56,11 +56,14 @@ const CreateAccount = () => {
 
   //Function to reset all the input fields back to their defaults
   const resetFields = () => {
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
     setFullName("")
     setEmailAddress("")
     setPasswordValue("")
     setShow(true)
-    navigate("/Login")
+    navigate("/")
   }
 
   //Function controls the Full Name user input-
@@ -81,7 +84,7 @@ const CreateAccount = () => {
   //Function returns the user to the login screen-
   const handleCancel = (event) => {
     console.log("Canceled")
-    navigate("/Login")
+    navigate("/")
   }
 
   return (

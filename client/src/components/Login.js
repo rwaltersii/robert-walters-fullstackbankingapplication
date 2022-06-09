@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom"
 // Imported Styles
 import "./Login.css"
 
-export const AllUsers = createContext()
+//export const AllUsers = createContext()
 
 const Login = (props) => {
   //This sets a variable to the function useNavigate(); When the user clicks the login button
   //if sucessful; the user is redirected to the home page- This is done in the loginHandler function-
   //This can be used in other locations and can direct to other pages-
+  //console.log(AllUsers)
   const navigate = useNavigate()
 
   //Get all the records in the account table and set users
@@ -30,8 +31,9 @@ const Login = (props) => {
 
   //The will only run once when the app starts (it gets all the accounts located in the table)
   useEffect(() => {
+    console.log("useEffect Ran")
     getAccounts()
-  }, [])
+  }, [navigate])
 
   //This controls the screen displayed if the username and password is not found
   const [showNotFound, setShowNotFound] = useState(false)
@@ -55,7 +57,7 @@ const Login = (props) => {
         userLoginValue = true
         props.userLogin(userLoginValue)
         props.userid(usersID)
-        navigate("/")
+        navigate("/", { value: { name: "Hello Robert" } })
         break
       }
     }
@@ -79,7 +81,7 @@ const Login = (props) => {
     setShowNotFound(false)
   }
   //
-  //Function that allows the user to login as Peter Parker if they don't already have an account
+  //Function that allows the user to create a new account if they don't already have an account
   const createAccount = (event) => {
     //This prevents the page from reloading
     event.preventDefault()
