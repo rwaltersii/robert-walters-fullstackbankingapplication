@@ -84,7 +84,7 @@ const Login = (props) => {
     //This prevents the page from reloading
     event.preventDefault()
     //
-    let usersID = 1
+    let usersID = 5
     let showNotFoundValue = false
     let userLoginValue = true
     props.userLogin(userLoginValue)
@@ -117,7 +117,7 @@ const Login = (props) => {
                   </p>
                   <p className="card-text demo-button-text">
                     <small className="text-muted">
-                      Use the "Demo" button to enter as Peter Parker.
+                      Use the "Demo" button to enter as a Quest.
                     </small>
                   </p>
                 </div>

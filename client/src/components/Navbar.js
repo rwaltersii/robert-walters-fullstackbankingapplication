@@ -1,18 +1,33 @@
 // Imported React Modules
-import React from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import ReactToolTip from "react-tooltip";
+import React, { useContext } from "react"
+import { NavLink, Link, useNavigate } from "react-router-dom"
+import ReactToolTip from "react-tooltip"
+
+import { AllUsers, UserID } from "../App"
 
 //Imported CSS Files
-import "./Navbar.css";
+import "./Navbar.css"
 
 const Navbar = (props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   //Logs out the user and returns them to the login screen
   const logoutUser = () => {
-    navigate("/login");
-    props.userLogin(false);
-  };
+    navigate("/login")
+    props.userLogin(false)
+  }
+
+  //This is the database table data from the App component - shared by useContext Hook
+  const users = useContext(AllUsers)
+  //This is the id of the user from the App component - shared by useContext Hook
+  const idOfUser = useContext(UserID)
+  //Get the name of the user from the id (this will be used in the welcome message)
+  let userName = ""
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].id === idOfUser) {
+      userName = users[i].name
+      break
+    }
+  }
 
   return (
     <div className="container">
@@ -114,13 +129,18 @@ const Navbar = (props) => {
                     Logout
                   </NavLink>
                 </li>
+                <li>
+                  <a style={{ color: "white" }} className="nav-link">
+                    {userName}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

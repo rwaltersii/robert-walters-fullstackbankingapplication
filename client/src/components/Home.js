@@ -1,21 +1,21 @@
 // Imported React Modules
-import React, { useContext } from "react";
-import { AllUsers, UserID } from "../App";
+import React, { useContext } from "react"
+import { AllUsers, UserID } from "../App"
 
 // Imported Styles
-import "./Home.css";
+import "./Home.css"
 
 const Home = () => {
   //This is the database table data from the App component - shared by useContext Hook
-  const users = useContext(AllUsers);
+  const users = useContext(AllUsers)
   //This is the id of the user from the App component - shared by useContext Hook
-  const idOfUser = useContext(UserID);
+  const idOfUser = useContext(UserID)
   //Get the name of the user from the id (this will be used in the welcome message)
-  let userName = "";
+  let userName = ""
   for (let i = 0; i < users.length; i++) {
     if (users[i].id === idOfUser) {
-      userName = users[i].name;
-      break;
+      userName = users[i].name
+      break
     }
   }
   return (
@@ -45,7 +45,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
