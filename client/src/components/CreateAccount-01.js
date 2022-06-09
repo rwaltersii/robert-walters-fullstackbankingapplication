@@ -1,88 +1,74 @@
 // Imported React Modules
-import React, { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
-import { UserContext } from "../App"
-
-// Imported Styles
-import "./CreateAccount.css"
+import React, { useState, useContext } from "react";
+import { UserContext } from "../App";
 
 const CreateAccount = () => {
   //List of form variables to control their state values
-  const [fullName, setFullName] = useState("")
-  const [emailAddress, setEmailAddress] = useState("")
-  const [passwordValue, setPasswordValue] = useState("")
+  const [fullName, setFullName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
 
   //This is the array of objects for the users; default value is from users from App.js
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   //This controls whetherr the input form or the Add Another message is being shown
-  const [show, setShow] = useState(true)
-
-  //Controls the redirection
-  const navigate = useNavigate()
+  const [show, setShow] = useState(true);
 
   //Function that controls the form submission-
   const submitHandler = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     //Checks all the input fields for errors, blank, password length, etc.
     if (!fullName) {
-      alert("Full Name field cannot be blank. Please try again.")
-      return
+      alert("Full Name field cannot be blank. Please try again.");
+      return;
     } else if (!emailAddress) {
-      alert("Email field cannot be blank. Please try again.")
-      return
+      alert("Email field cannot be blank. Please try again.");
+      return;
     } else if (passwordValue.length < 8) {
-      alert("Password must be at least 8 characters long. Please try again.")
-      return
+      alert("Password must be at least 8 characters long. Please try again.");
+      return;
     } else {
       //Write to data base here
-      console.log("Writing to the Database...")
+      console.log("Writing to the Database...");
       try {
-        const body = { fullName, emailAddress, passwordValue }
+        const body = { fullName, emailAddress, passwordValue };
         const response = await fetch("/createaccount", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         }).then(() => {
-          console.log("Write Complete")
-        })
+          console.log("Write Complete");
+        });
       } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
       }
     }
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   //Function to reset all the input fields back to their defaults
   const resetFields = () => {
-    setFullName("")
-    setEmailAddress("")
-    setPasswordValue("")
-    setShow(true)
-    navigate("/Login")
-  }
+    setFullName("");
+    setEmailAddress("");
+    setPasswordValue("");
+    setShow(true);
+  };
 
   //Function controls the Full Name user input-
   const handleFullNameChange = (event) => {
-    setFullName(event.target.value)
-  }
+    setFullName(event.target.value);
+  };
 
   //Function controls the Email Address user input-
   const handleEmailAddressChange = (event) => {
-    setEmailAddress(event.target.value)
-  }
+    setEmailAddress(event.target.value);
+  };
 
   //Function controls the Password user input-
   const handlePasswordValueChange = (event) => {
-    setPasswordValue(event.target.value)
-  }
-
-  //Function returns the user to the login screen-
-  const handleCancel = (event) => {
-    console.log("Canceled")
-    navigate("/Login")
-  }
+    setPasswordValue(event.target.value);
+  };
 
   return (
     <div>
@@ -142,13 +128,6 @@ const CreateAccount = () => {
               >
                 Create Account
               </button>
-              <button
-                type="submit"
-                className="btn btn-secondary cancel-button"
-                onClick={handleCancel}
-              >
-                Cancel
-              </button>
             </form>
           </div>
         </div>
@@ -165,14 +144,14 @@ const CreateAccount = () => {
                 className="btn btn-secondary"
                 onClick={resetFields}
               >
-                Return to Login
+                Add Another Account?
               </button>
             </form>
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CreateAccount
+export default CreateAccount;

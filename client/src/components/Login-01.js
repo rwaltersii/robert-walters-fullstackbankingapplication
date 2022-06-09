@@ -80,10 +80,17 @@ const Login = (props) => {
   }
   //
   //Function that allows the user to login as Peter Parker if they don't already have an account
-  const createAccount = (event) => {
+  const demoLogin = (event) => {
     //This prevents the page from reloading
     event.preventDefault()
-    navigate("/createaccount")
+    //
+    let usersID = 5
+    let showNotFoundValue = false
+    let userLoginValue = true
+    props.userLogin(userLoginValue)
+    props.userid(usersID)
+    navigate("/")
+    showNotFoundValue ? setShowNotFound(true) : setShowNotFound(false)
   }
 
   return (
@@ -105,12 +112,12 @@ const Login = (props) => {
                   <p className="card-text">For all your banking needs.</p>
                   <p className="card-text demo-button-text">
                     <small className="text-muted">
-                      Please Login or use the
+                      Please Login to continue.
                     </small>
                   </p>
                   <p className="card-text demo-button-text">
                     <small className="text-muted">
-                      Create Account button to setup a new account.
+                      Use the "Demo" button to enter as a Quest.
                     </small>
                   </p>
                 </div>
@@ -156,11 +163,11 @@ const Login = (props) => {
               <button
                 type="submit"
                 className="btn btn-secondary demo-button"
-                //The Create Account button is always active-
+                //The Demo button is always active-
                 disabled={false}
-                onClick={createAccount}
+                onClick={demoLogin}
               >
-                Create Account
+                Demo
               </button>
             </div>
           </div>

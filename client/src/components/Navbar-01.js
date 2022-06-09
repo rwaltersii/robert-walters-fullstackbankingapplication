@@ -67,7 +67,7 @@ const Navbar = (props) => {
                     Home
                   </NavLink>
                 </li>
-                {/* <li>
+                <li>
                   <NavLink
                     style={({ isActive }) =>
                       isActive ? { color: "red" } : { color: "" }
@@ -79,7 +79,7 @@ const Navbar = (props) => {
                   >
                     Create Account
                   </NavLink>
-                </li> */}
+                </li>
                 <li>
                   <NavLink
                     style={({ isActive }) =>
